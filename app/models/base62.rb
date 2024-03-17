@@ -1,12 +1,14 @@
 class Base62
   ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".freeze
   BASE = ALPHABET.length
+  BUFFER = 10000000
 
   class << self
 
     def encode(num)
       return ALPHABET[0] if num == 0 || num.nil?
 
+      num += BUFFER
       encoded_str = ""
 
       while num > 0 do
@@ -26,7 +28,7 @@ class Base62
         num += index * power
       end
 
-      num
+      num - BUFFER
     end
 
   end
