@@ -18,7 +18,15 @@ class Base62
     end
 
     def decode(str)
+      num = 0
 
+      str.reverse.each_char.with_index do |ch, pos|
+        power = BASE**pos
+        index = ALPHABET.index(ch)
+        num += index * power
+      end
+
+      num
     end
 
   end
