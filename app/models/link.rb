@@ -2,6 +2,8 @@ class Link < ApplicationRecord
   has_many :views, dependent: :destroy
 
   validates :url, presence: true
+  validates :url, format: { with: URI::regexp, message: 'Invalid url' }
+
   scope :recent_first, -> { order(created_at: :desc) }
 
   def to_param
@@ -16,4 +18,5 @@ class Link < ApplicationRecord
   def domain
     URI(url).host
   end
+
 end
