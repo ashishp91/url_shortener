@@ -2,6 +2,10 @@ class ViewsController < ApplicationController
   before_action :set_link, only: [:show]
 
   def show
+    @link = Link.find_by_code(params[:id])
+
+    return redirect_to root_path, alert: "Link doesn't exist anymore" if @link.nil?
+
     @link.views.create(
       ip: request.ip,
       user_agent: request.user_agent
@@ -15,7 +19,6 @@ class ViewsController < ApplicationController
     end
 
     def set_link
-      @link = Link.find_by_code(params[:id])
     end
 
 end

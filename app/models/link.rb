@@ -12,4 +12,8 @@ class Link < ApplicationRecord
     id = Base62.decode(code)
     self.find_by(id: id)
   end
+
+  def domain
+    URI(url).host
+  end
 end
