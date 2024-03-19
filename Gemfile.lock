@@ -145,6 +145,10 @@ GEM
     nio4r (2.7.0)
     nokogiri (1.16.3-x86_64-linux)
       racc (~> 1.4)
+    open-uri (0.4.1)
+      stringio
+      time
+      uri
     psych (5.1.2)
       stringio
     public_suffix (5.0.4)
@@ -219,6 +223,8 @@ GEM
     tailwindcss-rails (2.3.0-x86_64-linux)
       railties (>= 6.0.0)
     thor (1.3.1)
+    time (0.3.0)
+      date
     timeout (0.4.1)
     turbo-rails (2.0.5)
       actionpack (>= 6.0.0)
@@ -226,6 +232,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    uri (0.13.0)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -251,6 +258,7 @@ DEPENDENCIES
   groupdate (~> 6.4)
   importmap-rails
   jbuilder
+  open-uri (~> 0.4.1)
   puma (>= 5.0)
   rails (~> 7.1.3, >= 7.1.3.2)
   redis (>= 4.0.1)

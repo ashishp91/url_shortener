@@ -6,6 +6,10 @@ class Link < ApplicationRecord
 
   scope :recent_first, -> { order(created_at: :desc) }
 
+  after_save_commit if: :url_previously_changed? do
+    MetadataJob.perform_later(to_param)
+  end
+
   def to_param
     Base62.encode(id)
   end
