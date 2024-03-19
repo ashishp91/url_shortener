@@ -51,6 +51,9 @@ gem "groupdate", "~> 6.4"
 # Parse and load external HTML docs
 gem "open-uri", "~> 0.4.1"
 
+# User Authentication
+gem "devise", "~> 4.9"
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

@@ -1,5 +1,6 @@
 class LinksController < ApplicationController
   before_action :set_link, only: [:show, :edit, :update, :destroy]
+  before_action :is_editable?, only: [:edit, :update, :destroy]
 
   def index
     @links = Link.recent_first
@@ -21,7 +22,8 @@ class LinksController < ApplicationController
   end
 
   def create
-    @link = Link.new(link_params)
+    @link = Link.new(link_params.with_defaults(user: current_user))
+
     if @link.save
       respond_to do |format|
         format.html { redirect_to root_path }
@@ -49,6 +51,12 @@ class LinksController < ApplicationController
 
     def set_link
       @link = Link.find_by_code(params[:id])
+    end
+
+    def is_editable?
+      if !@link.editable_by?(current_user)
+        redirect_to root_path, alert: "You are not allowed to edit #{@link.url}"
+      end
     end
 
 end

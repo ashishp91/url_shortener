@@ -1,5 +1,6 @@
 class Link < ApplicationRecord
   has_many :views, dependent: :destroy
+  belongs_to :user, optional: true
 
   validates :url, presence: true
   validates :url, format: { with: URI::regexp, message: 'Invalid url' }
@@ -21,6 +22,10 @@ class Link < ApplicationRecord
 
   def domain
     URI(url).host
+  end
+
+  def editable_by?(user)
+    user_id? && (user_id == user&.id)
   end
 
 end
