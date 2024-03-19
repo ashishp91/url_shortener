@@ -54,6 +54,9 @@ gem "open-uri", "~> 0.4.1"
 # User Authentication
 gem "devise", "~> 4.9"
 
+# For pagination
+gem "pagy", "~> 7.0"
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
