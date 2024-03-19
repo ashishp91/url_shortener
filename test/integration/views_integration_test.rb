@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ViewsTest < ActionDispatch::IntegrationTest
+class ViewsIntegrationTest < ActionDispatch::IntegrationTest
 
   test "visiting a link records a view" do
     link = links(:one)

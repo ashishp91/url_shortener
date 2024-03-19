@@ -1,7 +1,7 @@
 class Base62
   ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".freeze
   BASE = ALPHABET.length
-  BUFFER = 10000000
+  BUFFER = 0
 
   class << self
 
