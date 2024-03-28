@@ -3,6 +3,7 @@ class MetadataJob < ApplicationJob
 
   def perform(id)
     link = Link.find_by_code(id)
+    puts "Executing MetadataJob for link with url: #{link.url}"
     attributes = Metadata.retrieve_from(link.url).attributes
 
     link.update(attributes)

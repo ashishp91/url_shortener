@@ -12,11 +12,11 @@ class Link < ApplicationRecord
   end
 
   def to_param
-    Base62.encode(id)
+    Base62EncoderService.encode(id)
   end
 
   def self.find_by_code(code)
-    id = Base62.decode(code)
+    id = Base62EncoderService.decode(code)
     self.find_by(id: id)
   end
 
