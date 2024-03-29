@@ -8,7 +8,10 @@ RSpec.describe Link, type: :model do
   let(:ror_discuss_forum) { build(:ror_discuss_forum) }
 
   it "Fetches recent first links" do
+    link_1 = create(:github_home_link, created_at: Time.now)
+    link_2 = create(:ror_discuss_forum, created_at: Time.now + 5.seconds)
 
+    expect(Link.recent_first.map(&:url)).to eq([link_2.url, link_1.url])
   end
 
   context "Updates metadata after save" do
