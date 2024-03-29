@@ -4,8 +4,8 @@ RSpec.describe Link, type: :model do
 
   let(:user) { FactoryBot.build(:sample_user) }
 
-  let(:github_home_link) { FactoryBot.build(:github_home_link) }
-  let(:ror_discuss_forum) { FactoryBot.build(:ror_discuss_forum) }
+  let(:github_home_link) { build(:github_home_link) }
+  let(:ror_discuss_forum) { build(:ror_discuss_forum) }
 
   it "Fetches recent first links" do
 

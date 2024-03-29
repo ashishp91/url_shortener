@@ -87,4 +87,7 @@ group :test do
   # For generating test data and fixtures
   gem "faker", "~> 3.2"
   gem "factory_bot_rails", "~> 6.4"
+
+  # Store external API calls locally
+  gem "vcr", "~> 6.2"
 end
