@@ -10,4 +10,7 @@ FactoryBot.define do
     url { 'https://discuss.rubyonrails.org' }
   end
 
+  factory :invalid_link, parent: :link do
+    url { 'invalid_link' }
+  end
 end

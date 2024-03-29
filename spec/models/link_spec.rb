@@ -2,8 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Link, type: :model do
 
-  let(:user) { FactoryBot.build(:sample_user) }
-
   let(:github_home_link) { build(:github_home_link) }
   let(:ror_discuss_forum) { build(:ror_discuss_forum) }
 
@@ -15,7 +13,6 @@ RSpec.describe Link, type: :model do
   end
 
   context "Updates metadata after save" do
-
     it "for link with title and description" do
       expect(Metadata).to receive(:retrieve_from).and_call_original
 
@@ -36,7 +33,53 @@ RSpec.describe Link, type: :model do
       expect(github_home_link.title).to be_nil
       expect(github_home_link.description).to be_nil
     end
-
   end
 
+  context "Finds link by code" do
+    let(:github_home_link) { create(:github_home_link) }
+
+    it "for github link" do
+      link = Link.find_by_code(github_home_link.to_param)
+      expect(link.url).to eq(github_home_link.url)
+    end
+  end
+
+  context "validations" do
+    let(:invalid_link) { build(:invalid_link) }
+    let(:link) { build(:link) }
+
+    it "doesnt allow links with invalid url" do
+      invalid_link.save
+      expect(invalid_link.errors.messages).to eq({:url=>["Invalid url"]})
+    end
+
+    it "doesnt allow links with empty link" do
+      link.save
+      expect(link.errors.messages).to eq({:url=>["can't be blank", "Invalid url"]})
+    end
+  end
+
+  context "user behavior" do
+    let(:user) { FactoryBot.build(:sample_user) }
+
+    it "allows links without user" do
+      github_home_link.save
+      github_home_link.reload
+
+      expect(github_home_link.user).to be_nil
+      expect(github_home_link.id).not_to be_nil
+    end
+
+    it "allows links associated with a user" do
+      user.save
+      user.reload
+      github_home_link.user_id = user.id
+
+      github_home_link.save
+      github_home_link.reload
+
+      expect(github_home_link.user_id).to eq(user.id)
+      expect(github_home_link.id).not_to be_nil
+    end
+  end
 end
