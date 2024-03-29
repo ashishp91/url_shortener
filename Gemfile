@@ -57,13 +57,6 @@ gem "devise", "~> 4.9"
 # For pagination
 gem "pagy", "~> 7.0"
 
-group :test, :development do
-  # For creating tests based on rspec
-  gem 'rspec-rails', '~> 6.0.0'
-  # For generating test data
-  gem "faker", "~> 3.2"
-end
-
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -87,4 +80,11 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+
+  # For creating tests based on rspec
+  gem 'rspec-rails', '~> 6.0.0'
+
+  # For generating test data and fixtures
+  gem "faker", "~> 3.2"
+  gem "factory_bot_rails", "~> 6.4"
 end
