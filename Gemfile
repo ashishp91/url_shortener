@@ -78,8 +78,8 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
+  gem "capybara", "~> 3.40"
+  gem "selenium-webdriver", "~> 4.19"
 
   # For creating tests based on rspec
   gem 'rspec-rails', '~> 6.0.0'
@@ -90,4 +90,7 @@ group :test do
 
   # Store external API calls locally
   gem "vcr", "~> 6.2"
+
+  # Code coverage tools
+  gem "simplecov", "~> 0.22.0"
 end
