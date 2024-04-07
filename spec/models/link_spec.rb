@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Link, type: :model do
 
+  before(:all) do
+    DatabaseCleaner.clean
+  end
+
   let(:github_home_link) { build(:github_home_link) }
   let(:ror_discuss_forum) { build(:ror_discuss_forum) }
 
@@ -15,7 +19,8 @@ RSpec.describe Link, type: :model do
   context "Updates metadata after save" do
     it "for link with title and description" do
       expect(MetadataService).to receive(:instance).and_call_original
-      expect_any_instance_of(MetadataResponse).to receive(:description).and_return("")
+      expect_any_instance_of(MetadataResponse).to receive(:title).and_return('Ruby on Rails Discussions - Ruby on Rails Discussions')
+      expect_any_instance_of(MetadataResponse).to receive(:description).and_return('Ruby on Rails Discussions')
 
       ror_discuss_forum.save
       ror_discuss_forum.reload
@@ -83,6 +88,10 @@ RSpec.describe Link, type: :model do
       expect(github_home_link.user_id).to eq(user.id)
       expect(github_home_link.id).not_to be_nil
     end
+  end
+
+  after(:all) do
+    DatabaseCleaner.clean
   end
 
 end
