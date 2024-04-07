@@ -4,6 +4,10 @@ class MetadataService
     @parser = HtmlParserService.new(url: url)
   end
 
+  def self.instance(url:)
+    new(url: url)
+  end
+
   def response
     MetadataResponse.new(
       title: title,
@@ -23,19 +27,6 @@ class MetadataService
 
     def image
       @parser.extract_meta('property', 'og:image')
-    end
-
-    class MetadataResponse
-      attr_reader :title, :description, :image
-
-      def initialize(title:, description:, image:)
-        self.title = title
-        self.description = description
-        self.image = image
-      end
-
-      private
-        attr_writer :title, :description, :image
     end
 
 end

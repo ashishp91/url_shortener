@@ -14,7 +14,7 @@ RSpec.describe Link, type: :model do
 
   context "Updates metadata after save" do
     it "for link with title and description" do
-      expect(Metadata).to receive(:retrieve_from).and_call_original
+      expect(MetadataService).to receive(:instance).and_call_original
 
       ror_discuss_forum.save
       ror_discuss_forum.reload
@@ -24,14 +24,15 @@ RSpec.describe Link, type: :model do
     end
 
     it "for link without title and description" do
-      expect(Metadata).to receive(:retrieve_from).and_call_original
-      expect_any_instance_of(Metadata).to receive(:attributes).and_return({})
+      expect(MetadataService).to receive(:instance).and_call_original
+      expect_any_instance_of(MetadataResponse).to receive(:title).and_return("")
+      expect_any_instance_of(MetadataResponse).to receive(:description).and_return("")
 
       github_home_link.save
       github_home_link.reload
 
-      expect(github_home_link.title).to be_nil
-      expect(github_home_link.description).to be_nil
+      expect(github_home_link.title).to eq("")
+      expect(github_home_link.description).to eq("")
     end
   end
 
@@ -82,4 +83,5 @@ RSpec.describe Link, type: :model do
       expect(github_home_link.id).not_to be_nil
     end
   end
+
 end

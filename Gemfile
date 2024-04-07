@@ -93,4 +93,6 @@ group :test do
 
   # Code coverage tools
   gem "simplecov", "~> 0.22.0"
+
+  gem "database_cleaner-active_record", "~> 2.1"
 end

@@ -4,7 +4,7 @@ class MetadataJob < ApplicationJob
   def perform(id)
     link = Link.find_by_code(id)
     puts "Executing MetadataJob for link with url: #{link.url}"
-    response = MetadataService.new(url: link.url).response
+    response = MetadataService.instance(url: link.url).response
 
     link.update(
       title: response.title,
