@@ -15,6 +15,9 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true # Runs `bundle install` and caches installed gems automatically
+      - name: Precompile Assets
+        run: |
+            bundle exec rake assets:precompile
       - name: Run tests
         run: |
           bundle exec rspec spec

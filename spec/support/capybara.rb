@@ -8,5 +8,7 @@ Capybara.register_driver :chrome do |app|
 end
 
 # set :selenium or :selenium_chrome or :selenium_chrome_headless
-Capybara.default_driver = :selenium_chrome
+Capybara.default_driver = :selenium_chrome_headless
+# Capybara.default_driver = :selenium_chrome
+
 Capybara.server = :puma
