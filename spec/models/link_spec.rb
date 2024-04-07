@@ -15,6 +15,7 @@ RSpec.describe Link, type: :model do
   context "Updates metadata after save" do
     it "for link with title and description" do
       expect(MetadataService).to receive(:instance).and_call_original
+      expect_any_instance_of(MetadataResponse).to receive(:description).and_return("")
 
       ror_discuss_forum.save
       ror_discuss_forum.reload
